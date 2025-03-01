@@ -1,6 +1,6 @@
 import { TaskService } from "../services/TaskService.js";
 import { Task } from "../models/Task.js";
-import { SUCCESS, ERRORS } from "../shared/messages.js";
+import { SUCCESS, ERROR } from "../shared/messages.js";
 
 jest.mock("../models/Task.js");
 

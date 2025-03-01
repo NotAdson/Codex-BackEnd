@@ -1,5 +1,5 @@
 import { User } from "../models/User.js";
-import { SUCCESS, ERRORS } from "../shared/messages.js";
+import { SUCCESS, ERROR } from "../shared/messages.js";
 
 export class UserService {
 	async createUser(name, email, password) {
@@ -24,7 +24,7 @@ export class UserService {
 			if (!user) {
 				return {
 					statusValue: 404,
-					message: ERRORS.USER_NOT_FOUND,
+					message: ERROR.USER_NOT_FOUND,
 				};
 			}
 			return {
@@ -48,7 +48,7 @@ export class UserService {
 			if (!updatedUser) {
 				return {
 					statusValue: 404,
-					message: ERRORS.USER_NOT_FOUND,
+					message: ERROR.USER_NOT_FOUND,
 				};
 			}
 			return {
@@ -70,7 +70,7 @@ export class UserService {
 			if (!deletedUser) {
 				return {
 					statusValue: 404,
-					message: ERRORS.USER_NOT_FOUND,
+					message: ERROR.USER_NOT_FOUND,
 				};
 			}
 			return {

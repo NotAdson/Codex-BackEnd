@@ -1,6 +1,6 @@
 import { UserService } from "../services/UserService.js";
 import { User } from "../models/User.js";
-import { SUCCESS, ERRORS } from "../shared/messages.js";
+import { SUCCESS, ERROR } from "../shared/messages.js";
 
 jest.mock("../models/User.js");
 
@@ -75,7 +75,7 @@ describe("UserService", () => {
 
 			expect(result).toEqual({
 				statusValue: 404,
-				message: ERRORS.USER_NOT_FOUND,
+				message: ERROR.USER_NOT_FOUND,
 			});
 		});
 	});

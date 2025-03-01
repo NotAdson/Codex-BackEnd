@@ -1,4 +1,4 @@
-export const ERROS = {
+export const ERROR = {
     WRONG_PASSWORD: "Wrong password!",
     NOT_FOUND: "not found!",
     USER_NEEDS: "The user needs",
