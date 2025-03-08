@@ -9,11 +9,11 @@ describe("TaskService", () => {
 
 	beforeEach(() => {
 		taskService = new TaskService();
-		jest.clearAllMocks();
+		jest.clearAllMocks(); // Clear mocks between tests
 	});
 
 	describe("createTask", () => {
-		it("should create a new task", async () => {
+		it("should create a task", async () => {
 			const mockTask = {
 				_id: "65a1b2c3d4e5f6a7b8c9d0e1",
 				title: "Complete project",
