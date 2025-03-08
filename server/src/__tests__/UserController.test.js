@@ -50,5 +50,4 @@ describe("UserController", () => {
 		});
 	});
 
-	// Add tests for getUserById, updateUser, and deleteUser
 });

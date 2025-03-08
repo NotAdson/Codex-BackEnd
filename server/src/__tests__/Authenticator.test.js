@@ -10,18 +10,18 @@ import jwt from "jsonwebtoken";
 function withEnvironment(key, value, callback) {
 	const originalValue = process.env[key];
 	if (value === undefined) {
-		delete process.env[key]; // Delete the environment variable if value is undefined
+		delete process.env[key];
 	} else {
-		process.env[key] = value; // Set the environment variable to the new value
+		process.env[key] = value;
 	}
 
 	try {
 		callback();
 	} finally {
 		if (originalValue === undefined) {
-			delete process.env[key]; // Restore the original state (delete if it was undefined)
+			delete process.env[key];
 		} else {
-			process.env[key] = originalValue; // Restore the original value
+			process.env[key] = originalValue;
 		}
 	}
 }

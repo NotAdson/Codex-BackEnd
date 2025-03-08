@@ -1,5 +1,5 @@
 import { Task } from "../models/Task.js";
-import { SUCCESS, ERRORS } from "../shared/messages.js";
+import { SUCCESS, ERROR } from "../shared/messages.js";
 
 export class TaskService {
 	async createTask(title, description, userId, dueDate) {
@@ -47,7 +47,7 @@ export class TaskService {
 			if (!updatedTask) {
 				return {
 					statusValue: 404,
-					message: ERRORS.TASK_NOT_FOUND,
+					message: ERROR.TASK_NOT_FOUND,
 				};
 			}
 			return {
@@ -69,7 +69,7 @@ export class TaskService {
 			if (!deletedTask) {
 				return {
 					statusValue: 404,
-					message: ERRORS.TASK_NOT_FOUND,
+					message: ERROR.TASK_NOT_FOUND,
 				};
 			}
 			return {
