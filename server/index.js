@@ -1,24 +1,49 @@
+import express from "express";
+import cors from "cors";
+import { routerUser } from "./src/routes/User.routes.js";
+import { routerTask } from "./src/routes/Task.routes.js";
 import dotenv from "dotenv";
-import connectDB from "./src/database/connection.js";
-import { User } from "./src/models/User.js";
 
 dotenv.config();
 
-connectDB();
+const app = express();
 
-const createUser = async () => {
-  try {
-    const newUser = new User({
-      name: "Carinha legal",
-      email: "email@example.com",
-      password: "hashedPassword:D",
-    });
+app.use(cors());
+app.use(express.json());
 
-    await newUser.save();
-    console.log("User created:", newUser);
-  } catch (error) {
-    console.error("Error creating user:", error);
-  }
+app.use("/api", routerUser);
+app.use("/api", routerTask);
+
+app.use((req, res) => {
+	res.status(404).json({ message: "Route not found" });
+});
+
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	res.status(500).json({ message: "Internal server error" });
+});
+
+const PORT = process.env.PORT || 3000;
+
+export { app };
+
+const server = {
+	start: () => {
+		return new Promise((resolve) => {
+			const instance = app.listen(PORT, () => {
+				console.log(`Server is running on port ${PORT}`);
+				resolve(instance);
+			});
+		});
+	},
+	stop: (instance) => {
+		return new Promise((resolve) => {
+			instance.close(() => {
+				console.log("Server stopped");
+				resolve();
+			});
+		});
+	},
 };
 
-createUser();
+export default server;
