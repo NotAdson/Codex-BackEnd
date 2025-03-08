@@ -17,19 +17,6 @@ export function generateAccessToken(userId) {
 	}
 }
 
-/*
-export function generateRefreshToken(userId) {
-	try {
-		return jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
-			expiresIn: REFRESH_TOKEN_EXPIRATION,
-		});
-	} catch (error) {
-		console.error("Error generating refresh token:", error.message);
-		return null;
-	}
-}
-*/
-
 export function verifyAccessToken(token) {
 	try {
 		return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
@@ -38,17 +25,6 @@ export function verifyAccessToken(token) {
 		return null;
 	}
 }
-
-/*
-export function verifyRefreshToken(token) {
-	try {
-		return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
-	} catch (error) {
-		console.error("Error verifying refresh token:", error.message);
-		return null;
-	}
-}
-*/
 
 export function verifyJWT(req, res, next) {
 	try {
@@ -70,21 +46,3 @@ export function verifyJWT(req, res, next) {
 		});
 	}
 }
-
-/*
-export function refreshTokens(refreshToken) {
-	try {
-		const decoded = verifyRefreshToken(refreshToken);
-		const newAccessToken = generateAccessToken(decoded.userId);
-		const newRefreshToken = generateRefreshToken(decoded.userId);
-
-		return {
-			accessToken: newAccessToken,
-			refreshToken: newRefreshToken,
-		};
-	} catch (error) {
-		console.error("Error refreshing tokens:", error.message);
-		return null;
-	}
-}
-*/
