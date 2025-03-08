@@ -84,4 +84,37 @@ export class UserService {
 			};
 		}
 	}
+
+	async validateUserCredentials(email, password) {
+		try {
+			const user = await User.findOne({ email });
+
+			if (!user) {
+				return {
+					statusValue: 404,
+					message: "User not found.",
+				};
+			}
+
+			if (password !== user.password) {
+				return {
+					statusValue: 401,
+					message: "Invalid credentials.",
+				};
+			}
+
+			return {
+				statusValue: 200,
+				message: "Login successful.",
+				userId: user._id,
+			};
+		} catch (error) {
+			console.error(error.message);
+			return {
+				statusValue: 500,
+				message: `${ERROR.INTERNAL} while validating user credentials.`,
+			};
+		}
+	}
 }
+

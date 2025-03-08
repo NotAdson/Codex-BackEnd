@@ -4,6 +4,7 @@ import {
 	getUserById,
 	updateUser,
 	deleteUser,
+	login,
 } from "../controllers/UserController.js";
 import { UserValidator } from "../middleware/User.validator.js";
 import { verifyJWT } from "../authentication/Authenticator.js";
@@ -19,16 +20,24 @@ routerUser.post(
 	}
 );
 
+routerUser.post(
+	"/login",
+	instanceUserValidator.loginValidation,
+	async (req, res) => {
+		return await login(req, res);
+	}
+);
+
 routerUser.get(
-	"/user/:id",
-	instanceUserValidator.getUserValidation,
+	"/user",
+	verifyJWT,
 	async (req, res) => {
 		return await getUserById(req, res);
 	}
 );
 
 routerUser.put(
-	"/user/update/:id",
+	"/user/update",
 	verifyJWT,
 	instanceUserValidator.updateUserValidation,
 	async (req, res) => {
@@ -37,7 +46,7 @@ routerUser.put(
 );
 
 routerUser.delete(
-	"/user/delete/:id",
+	"/user/delete",
 	verifyJWT,
 	instanceUserValidator.deleteUserValidation,
 	async (req, res) => {

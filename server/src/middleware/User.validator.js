@@ -28,7 +28,7 @@ export class UserValidator {
 
 	async getUserValidation(req, res, next) {
 		try {
-			const { id } = req.params;
+			const id = req.userId;
 			const errors = [];
 
 			if (!id) {
@@ -50,7 +50,7 @@ export class UserValidator {
 
 	async updateUserValidation(req, res, next) {
 		try {
-			const { id } = req.params;
+			const id = req.userId;
 			const updateData = req.body;
 			const errors = [];
 
@@ -77,7 +77,7 @@ export class UserValidator {
 
 	async deleteUserValidation(req, res, next) {
 		try {
-			const { id } = req.params;
+			const id = req.userId;
 			const errors = [];
 
 			if (!id) {
@@ -93,6 +93,31 @@ export class UserValidator {
 			console.error(error.message);
 			return res.status(500).json({
 				message: `${ERROR.INTERNAL} while validating request.`,
+			});
+		}
+	}
+
+	async loginValidation(req, res, next) {
+		try {
+			const { email, password } = req.body || {};
+			const fields = ["email", "password"];
+			const errors = [];
+
+			for (const field of fields) {
+				if (!req.body[field]) {
+					errors.push(`${ERROR.USER_NEEDS} a/an ${field}`);
+				}
+			}
+
+			if (errors.length) {
+				return res.status(400).json({ errors });
+			}
+
+			next();
+		} catch (error) {
+			console.error(error.message);
+			return res.status(500).json({
+				message: `${ERROR.INTERNAL} while validating login request.`,
 			});
 		}
 	}

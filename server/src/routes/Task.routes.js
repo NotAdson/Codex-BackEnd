@@ -21,7 +21,7 @@ routerTask.post(
 );
 
 routerTask.get(
-	"/tasks/:userId",
+	"/tasks",
 	verifyJWT,
 	instanceTaskValidator.getTasksValidation,
 	async (req, res) => {

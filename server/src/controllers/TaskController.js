@@ -5,7 +5,8 @@ const taskService = new TaskService();
 
 export async function createTask(req, res) {
 	try {
-		const { title, description, userId, dueDate } = req.body;
+		const userId = req.userId;
+		const { title, description, dueDate } = req.body;
 		const { statusValue, message, taskId } = await taskService.createTask(title, description, userId, dueDate);
 
 		return res.status(statusValue).json({
@@ -22,7 +23,7 @@ export async function createTask(req, res) {
 
 export async function getTasksByUser(req, res) {
 	try {
-		const { userId } = req.params;
+		const userId = req.userId;
 		const { statusValue, message, content } = await taskService.getTasksByUser(userId);
 
 		return res.status(statusValue).json({
@@ -39,7 +40,7 @@ export async function getTasksByUser(req, res) {
 
 export async function updateTask(req, res) {
 	try {
-		const { id } = req.params;
+		const id = req.userId;
 		const updateData = req.body;
 		const { statusValue, message, content } = await taskService.updateTask(id, updateData);
 
@@ -57,7 +58,7 @@ export async function updateTask(req, res) {
 
 export async function deleteTask(req, res) {
 	try {
-		const { id } = req.params;
+		const id = req.userId;
 		const { statusValue, message } = await taskService.deleteTask(id);
 
 		return res.status(statusValue).json({

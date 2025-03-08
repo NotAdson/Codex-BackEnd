@@ -3,8 +3,8 @@ import { ERROR } from "../shared/messages.js";
 export class TaskValidator {
 	async createTaskValidation(req, res, next) {
 		try {
-			const { title, userId } = req.body || {};
-			const fields = ["title", "userId"];
+			const { title} = req.body || {};
+			const fields = ["title"];
 			const errors = [];
 
 			for (const field of fields) {
@@ -28,7 +28,7 @@ export class TaskValidator {
 
 	async getTasksValidation(req, res, next) {
 		try {
-			const { userId } = req.params;
+			const userId = req.userId;
 			const errors = [];
 
 			if (!userId) {
@@ -50,7 +50,7 @@ export class TaskValidator {
 
 	async updateTaskValidation(req, res, next) {
 		try {
-			const { id } = req.params;
+			const id = req.userId;
 			const updateData = req.body;
 			const errors = [];
 
@@ -77,7 +77,7 @@ export class TaskValidator {
 
 	async deleteTaskValidation(req, res, next) {
 		try {
-			const { id } = req.params;
+			const id = req.userId;
 			const errors = [];
 
 			if (!id) {

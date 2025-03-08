@@ -17,6 +17,7 @@ export function generateAccessToken(userId) {
 	}
 }
 
+/*
 export function generateRefreshToken(userId) {
 	try {
 		return jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
@@ -27,6 +28,7 @@ export function generateRefreshToken(userId) {
 		return null;
 	}
 }
+*/
 
 export function verifyAccessToken(token) {
 	try {
@@ -37,6 +39,7 @@ export function verifyAccessToken(token) {
 	}
 }
 
+/*
 export function verifyRefreshToken(token) {
 	try {
 		return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
@@ -45,10 +48,11 @@ export function verifyRefreshToken(token) {
 		return null;
 	}
 }
+*/
 
 export function verifyJWT(req, res, next) {
 	try {
-		const token = req.headers["authorization"]?.split(" ")[1]; 
+		const token = req.headers["authorization"];
 
 		if (!token) {
 			return res.status(401).json({
@@ -67,6 +71,7 @@ export function verifyJWT(req, res, next) {
 	}
 }
 
+/*
 export function refreshTokens(refreshToken) {
 	try {
 		const decoded = verifyRefreshToken(refreshToken);
@@ -82,3 +87,4 @@ export function refreshTokens(refreshToken) {
 		return null;
 	}
 }
+*/

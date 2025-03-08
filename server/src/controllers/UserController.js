@@ -30,7 +30,7 @@ export async function createUser(req, res) {
 
 export async function getUserById(req, res) {
 	try {
-		const { id } = req.params;
+		const id = req.userId;
 		const { statusValue, message, content } = await userService.getUserById(id);
 
 		return res.status(statusValue).json({
@@ -47,7 +47,7 @@ export async function getUserById(req, res) {
 
 export async function updateUser(req, res) {
 	try {
-		const { id } = req.params;
+		const id = req.userId;
 		const updateData = req.body;
 		const { statusValue, message, content } = await userService.updateUser(id, updateData);
 
@@ -65,7 +65,7 @@ export async function updateUser(req, res) {
 
 export async function deleteUser(req, res) {
 	try {
-		const { id } = req.params;
+		const id = req.userId;
 		const { statusValue, message } = await userService.deleteUser(id);
 
 		return res.status(statusValue).json({
@@ -75,6 +75,32 @@ export async function deleteUser(req, res) {
 		console.error(error.message);
 		return res.status(500).json({
 			message: `${ERROR.INTERNAL} while trying to delete the user.`,
+		});
+	}
+}
+
+export async function login(req, res) {
+	try {
+		const { email, password } = req.body;
+
+		const { statusValue, message, userId } = await userService.validateUserCredentials(email, password);
+
+		if (statusValue === 200) {
+			const accessToken = generateAccessToken(userId);
+
+			return res.status(statusValue).json({
+				message: message,
+				accessToken: accessToken,
+			});
+		}
+
+		return res.status(statusValue).json({
+			message: message,
+		});
+	} catch (error) {
+		console.error(error.message);
+		return res.status(500).json({
+			message: `${ERROR.INTERNAL} while trying to log in.`,
 		});
 	}
 }
