@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node startServer.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -22,9 +22,9 @@
     "mongoose": "^8.11.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9",
-    "jest": "^29.7.0",
     "@babel/preset-env": "^7.23.2",
-    "babel-jest": "^29.7.0"
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9"
   }
 }

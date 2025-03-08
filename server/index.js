@@ -3,6 +3,7 @@ import cors from "cors";
 import { routerUser } from "./src/routes/User.routes.js";
 import { routerTask } from "./src/routes/Task.routes.js";
 import dotenv from "dotenv";
+import connectDB from "./src/database/connection.js"
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ const server = {
 		return new Promise((resolve) => {
 			const instance = app.listen(PORT, () => {
 				console.log(`Server is running on port ${PORT}`);
+				connectDB();
 				resolve(instance);
 			});
 		});
