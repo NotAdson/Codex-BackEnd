@@ -1,4 +1,3 @@
-```markdown
 # TODO List API
 
 This document provides detailed information about the REST API for managing users and tasks. The API is built using Express.js and follows a structured project layout.
@@ -24,51 +23,6 @@ This document provides detailed information about the REST API for managing user
 6. [Running the Project](#running-the-project)
 
 ---
-
-## Project Structure
-
-The project is structured as follows:
-
-```
-├── package.json
-├── package-lock.json
-├── src
-│   ├── authentication
-│   │   └── Authenticator.js
-│   ├── controllers
-│   │   ├── TaskController.js
-│   │   └── UserController.js
-│   ├── database
-│   │   └── connection.js
-│   ├── middleware
-│   │   ├── Task.validator.js
-│   │   └── User.validator.js
-│   ├── models
-│   │   ├── Task.js
-│   │   └── User.js
-│   ├── routes
-│   │   ├── Task.routes.js
-│   │   └── User.routes.js
-│   ├── services
-│   │   ├── TaskService.js
-│   │   └── UserService.js
-│   ├── shared
-│   │   └── messages.js
-│   └── __tests__
-│       ├── Authenticator.test.js
-│       ├── jest.globalSetup.js
-│       ├── jest.globalTeardown.js
-│       ├── TaskController.test.js
-│       ├── Task.routes.test.js
-│       ├── TaskService.test.js
-│       ├── UserController.test.js
-│       ├── User.routes.test.js
-│       └── UserService.test.js
-└── startServer.js
-```
-
----
-
 ## User Routes
 
 ### Register User
@@ -261,6 +215,4 @@ The project is structured as follows:
    ```bash
    npm run test:watch
    ```
-```
-
 ---
