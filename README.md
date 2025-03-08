@@ -33,9 +33,9 @@ This document provides detailed information about the REST API for managing user
 - **Request Body**:
   ```json
   {
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "password": "password123"
+    "name": "Caba legal",
+    "email": "caba@legal.com",
+    "password": "senha123"
   }
   ```
 - **Response**:
